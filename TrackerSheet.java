@@ -41,6 +41,7 @@ public class TrackerSheet {
         printArray(arr2);//printing subjects array
         System.out.println("Total\tPercentage");
         System.out.println("---------------------------------------------------------------------------");
+        float [] perOfStudents = new float[arr1.length];
         for (int i=0; i<arr.length; i++) {
             float total = 0;
             System.out.print(arr1[i]+"\t|");
@@ -49,13 +50,32 @@ public class TrackerSheet {
                 total = total+arr[i][j];
             }
             System.out.print(total+"\t");
+            //limiting the decimal point to 2D and converting into float value
             DecimalFormat df = new DecimalFormat("#.##");
-            System.out.print(df.format((total/(arr2.length*100))*100)+"%");
+            float percentage = Float.parseFloat(df.format((total/(arr2.length*100))*100));
+            perOfStudents[i] = percentage;//storing percentages of students in array perOfStudents
+            System.out.print(percentage+"%");
             System.out.println();
         }
         System.out.println("---------------------------------------------------------------------------");
+        topRated(perOfStudents, arr1);//calling topRated function
     }
 
+    //Function to calculate and print top rated student
+    public static void topRated(float [] percentages, String [] arr) {
+
+        float max = percentages[0];
+        int count = 0;
+        for (int i=1; i<percentages.length; i++) {
+            if (percentages[i]>max) {
+                max = percentages[i];
+                count++;
+            }
+        }
+        System.out.println("Top Performer: "+arr[count]+" with "+ max+" %");
+        System.out.println("--------------------------------------------------------");
+
+    }
     public static void main(String[] args) throws IOException {
         System.out.println("---------------------------------------");
         System.out.println("-------Students Progress Tracker-------");
