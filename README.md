@@ -7,3 +7,4 @@ A Java-based application that enables teachers to input subjects, student names,
 - Record and display student marks
 - Calculate total marks and percentage for each student
 - Identify the top-performing student
+- Efficient data storage and management using both one-dimensional and two-dimensional arrays
